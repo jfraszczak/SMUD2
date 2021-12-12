@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+</head>
+<body>
+
+    <form id="msform" action="home">
+      <fieldset>
+        <h2 class="fs-title">Covid Certificate Validation</h2>
+        <h3 class="fs-subtitle">Enter certificate ID</h3>
+        <input type="certificate_id" name="certificate_id" placeholder="Certificate ID" value="" required/>
+        <input type="submit" class="next action-button" value="Submit" />
+
+        {% if valid is not none %}
+
+          {% if valid == false %}
+          <br><br><br>
+          <h3>Certificate {{certificate_id}} not valid</h3>
+          <span style='font-size:100px;'>&#10060;</span>
+          {% endif %}
+
+          {% if valid == true%}
+          <br><br><br>
+          <h3>Certificate {{certificate_id}} valid</h3>
+          <span style='font-size:100px;'>&#9989;</span>
+          {% endif %}
+
+        {% endif %}
+
+        {% if wrong_id is not none %}
+          {% if wrong_id == true%}
+          <br><br><br>
+          <h3>Given certificate id does not exist</h3>
+          {% endif %}
+        {% endif %}
+
+      </fieldset>
+    </form>
+
+
+</body>
+</html>
+
+
